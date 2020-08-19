@@ -1,0 +1,126 @@
+ 
+<div class="container searchDonarDiv">
+   
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+            <div class="searchDonarForm">
+                <h4>Search Blood Donar</h4>
+                <p>Before receiving the blood, please conslut doctor and check the donar health condition</p>
+                <hr>
+                <form #searchDonarForm = "ngForm" novalidate (ngSubmit)=onSearchSubmit(searchDonarForm.value)>
+                    <!-- Blood  Group -->
+                    <div class="form-group row">
+                        <label  class="col-sm-4 col-form-label">Blood Group<span class="formRequried">*</span></label>
+                        <div class="col-sm-8">
+                          <select #bloodGroupRef = "ngModel" required ngModel name="bloodGroup" class="form-control">
+                            <option value="" selected>-----Select-----</option>
+                            <option *ngFor = "let blood of bloodList" value="blood"> {{blood}} </option>
+                         </select>
+                        </div>
+                        <div *ngIf="bloodGroupRef.errors && (bloodGroupRef.valid || bloodGroupRef.touched)" class="col-sm-12 alert alert-danger">
+                          <div [hidden]= "bloodGroupRef.errors.valid " > 
+                            Select the blood group.
+                          </div>
+                        </div>
+                      </div>
+    
+                      <!-- place -->
+                      <div class="form-group row">
+                        <label  class="col-sm-4 col-form-label">Place<span class="formRequried">*</span></label>
+                        <div class="col-sm-8">
+                          <select #placeRef = "ngModel" required ngModel name="place" class="form-control">
+                                <option value="">-----Select-----</option>
+                                <option *ngFor="let place of placeList" value="{{place}}"> {{place}} </option>
+                            </select>
+                        </div> <div *ngIf = "placeRef.errors && (placeRef.valid || placeRef.touched)" class="col-sm-12 alert alert-danger">
+                          <div [hidden]="placeRef.errors.valid" >Please select the place</div>
+                        </div>
+                      </div>
+
+                      <!-- Reason -->
+                      <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-4 col-form-label">COVID 19 plasma donar<span class="formRequried">*</span></label>
+                        <div class="col-sm-8">
+                          <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password"> -->
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" #plasmaDonarRef = "ngModel" required type="radio" 
+                            name="plasmaDonar" ngModel  value="yes" >
+                            <label class="form-check-label" >
+                             Yes
+                            </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" #plasmaDonarRef = "ngModel" required type="radio"
+                             name="plasmaDonar" ngModel value="no">
+                            <label class="form-check-label" >
+                             No
+                            </label>
+                          </div>
+                        </div>
+                        <div *ngIf="plasmaDonarRef.errors && (plasmaDonarRef.valid || plasmaDonarRef.touched)" class="col-sm-12 alert alert-danger">
+                          <div [hidden]="plasmaDonarRef.errors.valid">Please select the Yes or No</div>
+                        </div>
+                      </div>
+
+                      <button type="submit" [disabled] = "!searchDonarForm.form.valid" class="btn btn-primary btn-lg btn-block">Search</button>
+                </form>
+            </div>
+          
+        </div>
+        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+
+          <!-- Search Table -->
+
+          <div class="donarListDiv" *ngIf="displaySearchList; else displayContent">
+            <table class="table table-striped">
+                <thead  class="thead-dark">
+                  <tr>
+                    <th scope="col" *ngFor="let header of searchTableHeader" id="{{header}}"> {{header}} </th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let donarlist of donarData" >
+                    <td>{{donarlist.name}}</td>
+                    <td>{{donarlist.bloodGroup}}</td>
+                    <td> {{donarlist.mobileNumber}} </td>
+                    <td> {{donarlist.place}} </td>
+                    <td> {{donarlist.covidDonar}} </td> 
+                  </tr>
+                 
+                </tbody>
+              </table>
+        </div>
+
+            <!-- displayCOntent -->
+           <ng-template #displayContent>
+            <div>
+              <h3 class="donarHeading">Looking For Donar ?</h3>
+              <hr>
+              <img src="../../assets/findDonar.png" class="img-fluid rounded mx-auto d-block donarImage"  alt="">
+              <ul class="list-group bloodCntentList">
+                  <li class="list-group-item"> <i class="fa fa-check-square" aria-hidden="true"></i> Before taking the blood from donar, please check health condition by consulting doctor.</li>
+                  <li class="list-group-item"><i class="fa fa-check-square" aria-hidden="true"></i> In this website we have not verified the donar, so don't fall in the trap and pay money for frauds.</li>
+                  <li class="list-group-item"><i class="fa fa-check-square" aria-hidden="true"></i> This website is non-profitable, this is the platform for the people who are looking for blood to save a life. </li>
+                  <li class="list-group-item"><i class="fa fa-check-square" aria-hidden="true"></i>  we are no way responsible for any types of frauds, so be alert Stay Safe! </li>
+                 
+                </ul>
+          </div>
+           </ng-template>
+            
+           
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-xs-0 col-sm-0"></div>
+        <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+            
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-0 col-sm-0"></div>
+       
+     
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+.footerDiv{
+    background-color: #1b2a4e !important;
+    /* position: absolute;
+    bottom: 0;
+    height: 300px;
+    overflow: hidden; */
+}
+.footerHeadDiv{
+    margin-top: 10%;
+}
+.footerHeadDiv>h2{
+    color: white;
+}
+.footerHeadDiv > p{
+    margin-top: 25px;
+    /* line-height: 30px; */
+    font-weight: 400;
+    color: #8686b5;
+}
+.footerLinkDiv{
+    margin-top: 5%;
+}
+ 
+.footerHead {
+    text-align: center;
+    color: white;
+    margin-top: 8%;
+}
+.importantLinks{
+    margin-top: 5%;
+}
+.linkList{
+    list-style: none;
+}
+.linkList > li > a{
+    /* color: white; */
+    text-decoration: none;
+    color: #8686b5;
+    font-weight: 400;
+    margin-bottom: 10px;
+    /* display: inline-block; */
+}
+.linkList > li > a:hover{
+    color: white;
+}

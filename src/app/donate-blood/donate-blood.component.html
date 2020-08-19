@@ -1,0 +1,166 @@
+<div class="container donateBloodDiv">
+   <div class=" row" >
+      <div class="col-lg-3 col-md-3 col-xs-4 col-sm-4"></div>
+      <div class="col-lg-6 col-md-6 col-xs-4 col-sm-4">
+        <div class=" donarForm">
+          <h4>Blood Donar Details</h4>
+          <p>Before you donate the blood, Please consult a doctor and check your health condition</p>
+          <hr>
+           <form class="" id="donarFromDetails" #donarForm = "ngForm" (ngSubmit)="onSubmit(donarForm.value);donarForm.reset()" novalidate>  
+             <!-- full name -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Full Name<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <input type="text" #fullNameRef = "ngModel"  name="fullName" ngModel 
+                minlength="4" required class="form-control"  placeholder="Full Name">
+              </div>
+              <div *ngIf="fullNameRef.errors && (fullNameRef.dirty || fullNameRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]= "!fullNameRef.errors.required" > 
+                    Please enter a valid name.
+                </div>
+                <div [hidden] = "!fullNameRef.errors.minlength">
+                    Please enter atleast 4 characters.
+                </div>
+              </div>
+              <!-- <div class="invalid-feedback">Full name is requried</div> -->
+            </div>
+              <!-- Blood Group -->
+              <div class="form-group row">
+                <label  class="col-sm-4 col-form-label">Blood Group<span class="formRequried">*</span></label>
+                <div class="col-sm-8">
+                  <select  class="form-control" #bloodGroupRef = "ngModel" required  name="bloodGroup" ngModel>
+                    <option value="" selected>-----Select-----</option>
+                    <option *ngFor="let e of blood" value="{{e}}"> {{e}} </option>
+                 </select>
+                </div>
+                <div *ngIf="bloodGroupRef.errors && (bloodGroupRef.valid || bloodGroupRef.touched)" class="col-sm-12 alert alert-danger">
+                  <div [hidden]= "bloodGroupRef.errors.valid " > 
+                    Select the blood group.
+                  </div>
+                </div>
+              </div>
+            
+            <!-- Gender -->
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-4 col-form-label">Gender<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password"> -->
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" #genderRef = "ngModel" required type="radio" name="gender" ngModel value="male" >
+                  <label class="form-check-label" >
+                   Male
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" #genderRef = "ngModel" required type="radio" name="gender" ngModel value="female">
+                  <label class="form-check-label" >
+                   Female
+                  </label>
+                </div>
+              </div>
+              <div *ngIf="genderRef.errors && (genderRef.valid || genderRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]="genderRef.errors.valid">Please select the gender</div>
+              </div>
+            </div>
+            <!-- Age -->
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Age<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <input type="text" #ageRef = "ngModel" pattern="^[0-9][1-9]{1}$" required class="form-control" name="age" ngModel  placeholder="Age">
+              </div>
+              <div *ngIf="ageRef.errors && (ageRef.dirty || ageRef.touched )" class="col-sm-12 alert alert-danger">
+                <div [hidden] = "ageRef.errors.required">
+                  Please enter the age.
+                </div>
+                <div [hidden]="ageRef.errors.pattern">
+                  Age must be above 18 years.
+                </div>
+              </div>
+            </div>
+            <!-- Phone number -->
+            <div class="form-group row">
+              <label  class="col-sm-4 col-form-label">Mobile No<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <input type="text" #mobileNoRef = "ngModel" required pattern="^[1-9][0-9]{9}$" class="form-control" name="mobileNumber" ngModel  placeholder="Mobile Number">
+              </div>
+              <div *ngIf="mobileNoRef.errors && (mobileNoRef.dirty || mobileNoRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]= "!mobileNoRef.errors.required" > 
+                    Please enter a valid mobile number.
+                </div>
+                <div [hidden] = "!mobileNoRef.errors.pattern">
+                    Please enter 10 numbers.
+                </div>
+              </div>
+            </div>
+             
+            <!-- Place -->
+            <div class="form-group row">
+              <label  class="col-sm-4 col-form-label">Place<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <select name="place" #placeRef ="ngModel" required ngModel class="form-control">
+                      <option value="">-----Select-----</option>
+                      <option *ngFor="let place of placeList" value="{{place}}"> {{place}} </option>
+                  </select>
+              </div>
+              <div *ngIf = "placeRef.errors && (placeRef.valid || placeRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]="placeRef.errors.valid" >Please select the place</div>
+              </div>
+            </div>
+            <!-- Address -->
+            <div class="form-group row">
+              <label  class="col-sm-4 col-form-label">Address<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <textarea class="form-control" minlength="10" maxlength="100" #addressRef="ngModel" required name="address" ngModel id="" rows="3" placeholder="Address"></textarea>
+              </div>
+              <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]= "!addressRef.errors.required" > 
+                    Please enter a valid Address.
+                </div>
+                <div [hidden] = "!addressRef.errors.minlength">
+                    Please enter atleast 10 characters.
+                </div>
+                <div [hidden] = "!addressRef.errors.maxlength">
+                    Characters must not exceed 100 characters
+                </div>
+              </div>
+            </div>
+
+            <!-- Reason -->
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-4 col-form-label">COVID 19 Plasma Donar<span class="formRequried">*</span></label>
+              <div class="col-sm-8">
+                <!-- <input type="password" class="form-control" id="inputPassword" placeholder="Password"> -->
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" #plasmaDonarRef = "ngModel" required type="radio" 
+                  name="plasmaDonar" ngModel  value="yes" >
+                  <label class="form-check-label" >
+                   Yes
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" #plasmaDonarRef = "ngModel" required type="radio"
+                   name="plasmaDonar" ngModel value="no">
+                  <label class="form-check-label" >
+                   No
+                  </label>
+                </div>
+              </div>
+              <div *ngIf="plasmaDonarRef.errors && (plasmaDonarRef.valid || plasmaDonarRef.touched)" class="col-sm-12 alert alert-danger">
+                <div [hidden]="plasmaDonarRef.errors.valid">Please select the gender</div>
+              </div>
+            </div>
+            <!-- If Covid YEs -->
+            
+            <button type="submit" [disabled]="!donarForm.form.valid"class="btn btn-primary btn-lg btn-block">Save</button>
+            <div [hidden]="donarForm.form.valid" class=" text-danger">* Please enter all fields</div>
+          </form>  
+         
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-4 col-sm-4"></div>
+  
+     
+   </div>
+</div>
+
+

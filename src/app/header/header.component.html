@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-light navbar-expand-lg fixed-top HomeNav" >
+   <h4 class="logoImg" routerLink = "/">Plasma Donation</h4>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto navItems">
+        <li clas="navbar-item">
+          <a  class="nav-link" routerLink = "/"  routerLinkActive="MyActiveTab" [routerLinkActiveOptions]="{exact: true}" >Home</a>
+        </li>
+        <li  clas="navbar-item">
+          <a  class="nav-link" routerLink = "/donateBlood"  routerLinkActive="MyActiveTab" [routerLinkActiveOptions]="{exact: true}"   >Donate Blood</a>
+        </li>
+        <li  clas="navbar-item">
+          <a  class="nav-link" routerLink = "/searchBlood"  routerLinkActive="MyActiveTab" [routerLinkActiveOptions]="{exact: true}"  >Search Donar</a>
+        </li>
+     
+      </ul>
+    </div>
+  </nav>
+</div>
+
